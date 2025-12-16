@@ -1,4 +1,4 @@
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -21,33 +21,24 @@ import { CommonModule } from '@angular/common';
 
 
 
-@NgModule({
-  declarations: [
-    AppComponent,
-    RodapeComponent,
-    CriarPensamentoComponent,
-    ListarPensamentoComponent,
-    PensamentoComponent,
-    ExcluirPensamentoComponent,
-    EditarPensamentoComponent,
-    ImpressaoComponent,
-    DetalharPensamentoComponent,
-    EditarLongoPensamentoComponent,
-    AdicionarPensamentoComponent,
-    LoginComponent,
-
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule,
-    HttpClientModule,
-    ReactiveFormsModule,
-    CommonModule,
-    ReactiveFormsModule,
-
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
-})
+@NgModule({ declarations: [
+        AppComponent,
+        RodapeComponent,
+        CriarPensamentoComponent,
+        ListarPensamentoComponent,
+        PensamentoComponent,
+        ExcluirPensamentoComponent,
+        EditarPensamentoComponent,
+        ImpressaoComponent,
+        DetalharPensamentoComponent,
+        EditarLongoPensamentoComponent,
+        AdicionarPensamentoComponent,
+        LoginComponent,
+    ],
+    bootstrap: [AppComponent], imports: [BrowserModule,
+        AppRoutingModule,
+        FormsModule,
+        ReactiveFormsModule,
+        CommonModule,
+        ReactiveFormsModule], providers: [provideHttpClient(withInterceptorsFromDi())] })
 export class AppModule { }
