@@ -1,0 +1,76 @@
+<section class="auth-container">
+  <div class="auth-card">
+    <h2>Crie sua conta</h2>
+    <p class="subtitulo">Preencha os dados para se cadastrar</p>
+
+    <form [formGroup]="form" (ngSubmit)="criarUser()">
+
+
+      <!-- Nome -->
+      <label>Nome</label>
+      <input type="text" formControlName="name" placeholder="Seu nome completo" ngConsoleLog="user.nome"/>
+      <p class="erro" *ngIf="form.get('name')?.touched && form.get('name')?.invalid">
+        Nome obrigatório (mín. 3 caracteres)
+      </p>
+
+      <!-- Email -->
+      <label>Email</label>
+      <input type="email" formControlName="email" placeholder="seu@email.com" ngConsoleLog="user.email"/>
+      <p class="erro" *ngIf="form.get('email')?.touched && form.get('email')?.invalid">
+        Email inválido
+      </p>
+
+      <!-- Senha -->
+      <label>Senha</label>
+      <div class="input-password">
+        <input
+          [type]="showPassword ? 'text' : 'password'" formControlName="password"
+          placeholder="••••••••"
+          ngConsoleLog="user.password"
+        />
+        <button type="showPassword  ? 'text' : 'confirPassword'" (click)="togglePassword()">👁️</button>
+      </div>
+
+      <!-- Força da senha -->
+      <div class="strength" *ngIf="password">
+        <div class="bars">
+          <span *ngFor="let bar of [0,1,2,3]; let i = index"
+                [class.active]="i < passwordStrength"></span>
+        </div>
+        <small>{{ strengthLabels[passwordStrength] }}</small>
+      </div>
+
+      <!-- Confirmar senha -->
+      <label>Confirmar senha</label>
+      <div class="input-password">
+        <mat-form-field><input
+          [type]="showConfirmPassword ? 'text' : 'password'"
+          formControlName="confirmPassword"
+          placeholder="••••••••"
+        />
+        <mat-error *ngIf="form.get('confirmPassword')?.hasError('required')">
+          Confirmação de senha é obrigatória
+        </mat-error>
+
+        <mat-error *ngIf="form.hasError('mismatch') && form.get('confirmPassword')?.touched">
+          As senhas não coincidem
+        </mat-error></mat-form-field>
+
+        <button type="button" (click)="toggleConfirmPassword()">👁️</button>
+      </div>
+
+      <p class="erro" *ngIf="form.get('confirmPassword')?.errors?.['mismatch']">
+        As senhas não coincidem
+      </p>
+
+      <!-- Botão -->
+
+      <button>Cadastrar</button>
+
+
+      <p class="rodape">
+        Já tem uma conta? <a routerLink="/login">Entrar</a>
+      </p>
+    </form>
+  </div>
+</section>

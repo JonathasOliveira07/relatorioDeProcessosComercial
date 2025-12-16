@@ -1,0 +1,88 @@
+// import { Component } from '@angular/core';
+// import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+// import { ActivatedRoute, Router } from '@angular/router';
+// import { User } from './cadastro';
+// import { CadastroService } from './cadastro.service';
+
+// @Component({
+//   selector: 'app-cadastro',
+//   templateUrl: './cadastro.component.html',
+//   styleUrls: ['./cadastro.component.css']
+// })
+// export class CadastroComponent {
+
+//   user: User = {
+//   id: 0,
+//   email: '',
+//   password: '',
+//   nome: ''
+// }
+
+//   constructor(
+//     private fb: FormBuilder,
+//     private router: Router,
+//     private route: ActivatedRoute,
+//     private service: CadastroService,
+//   ) {
+//     this.form = this.fb.group({
+//       name: ['', [Validators.required, Validators.minLength(3)]],
+//       email: ['', [Validators.required, Validators.email]],
+//       password: ['', [Validators.required, Validators.minLength(6)]],
+//       confirmPassword: ['', Validators.required],
+//     });
+//   }
+
+//   get password(): string {
+//     return this.form.get('password')?.value || '';
+//   }
+
+//   togglePassword() {
+//     this.showPassword = !this.showPassword;
+//   }
+
+//   toggleConfirmPassword() {
+//     this.showConfirmPassword = !this.showConfirmPassword;
+//   }
+
+//   calculatePasswordStrength(pwd: string): number {
+//     if (!pwd) return 0;
+//     let strength = 0;
+//     if (pwd.length >= 6) strength++;
+//     if (/[A-Z]/.test(pwd) && /[a-z]/.test(pwd)) strength++;
+//     if (/[0-9]/.test(pwd)) strength++;
+//     if (/[^A-Za-z0-9]/.test(pwd)) strength++;
+//     return strength;
+//   }
+
+//   get passwordStrength(): number {
+//     return this.calculatePasswordStrength(this.password);
+//   }
+
+//   strengthLabels = ['Muito Fraca', 'Fraca', 'Média', 'Forte', 'Muito Forte'];
+
+//   submit() {
+//   if (this.form.invalid) {
+//     this.form.markAllAsTouched();
+//     return;
+//   }
+
+//   if (this.form.value.password !== this.form.value.confirmPassword) {
+//     this.form.get('confirmPassword')?.setErrors({ mismatch: true });
+//     return;
+//   }
+
+//   this.isLoading = true;
+
+//   this.authService.register(this.form.value).subscribe({
+//     next: () => {
+//       this.isLoading = false;
+//       this.router.navigate(['/login']);
+//     },
+//     error: () => {
+//       this.isLoading = false;
+//       alert('Erro ao cadastrar');
+//     }
+//   });
+// }
+
+// }

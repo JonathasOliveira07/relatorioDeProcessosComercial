@@ -1,0 +1,30 @@
+<section class="container detalhar-pensamentos ff-inter">
+    <div class="pensamento">
+        <!-- <img src="/assets/imagens/{{ pensamento.modelo }}.png" alt="Aspas coloridas"> -->
+        <p class="conteudo">Processo nº. {{ pensamento.processoprotocolo }}</p>
+        <p class="conteudo">Vara Serventia: {{ pensamento.varaserventia }}</p>
+        <p class="conteudo">Cliente: {{ pensamento.nomeDaEmpresa }}</p>
+        <p class="conteudo">Polo: {{ pensamento.polo }}</p>
+        <p class="conteudo">Data da Distribuição: {{ pensamento.datadadistribuicao }}</p>
+        <p class="conteudo">Ação: {{ pensamento.acao }}</p>
+        <p class="conteudo">Parte Contrária: {{ pensamento.partecontraria }}</p>
+        <p class="conteudo">Empreendimento: {{ pensamento.empreendimento }}</p>
+        <p class="conteudo">Custas Judiciais: {{ pensamento.custasjudiciais }}</p>
+        <p class="conteudo">Valor da Causa: {{ pensamento.valordacausa }}</p>
+        <p class="conteudo"> Prazo Final: {{ pensamento.prazofinal }}</p>
+        <p class="autoria"><b>Diligência: {{ pensamento.andamento }}</b></p>
+        <p class="autoria"><b>Faltam: {{ diasRestantes }}</b></p>
+        <p class="audiencia"><b>Audiência: {{ pensamento.audiencia }}</b></p>
+    
+        <!-- <p class="hoje"><b>Hoje: {{ stringData }}</b></p> -->
+        <!-- <div class="acoes">
+        <button class="botao-editar">
+            <img src="/assets/imagens/icone-editar.png" routerLink="/pensamentos/editarPensamento/{{pensamento.id}}" alt="Ícone de editar">
+        </button>
+        <button class="botao-excluir" routerLink="/pensamentos/excluirPensamento/{{pensamento.id}}">
+            <img src="/assets/imagens/icone-excluir.png" alt="Ícone de excluir">
+        </button>
+        </div> -->
+    </div>
+
+</section>

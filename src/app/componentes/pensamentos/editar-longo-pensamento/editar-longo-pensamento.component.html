@@ -1,0 +1,143 @@
+<section class="container editar-pensamentos ff-inter">
+    <header class="header">
+      <h2>Edite completamente <br>a demanda:</h2>
+    </header>
+    <form>
+      <label for="processo">Processo nº.</label>
+<input
+  type="text"
+  class="input"
+  id="processo"
+  name="processo"
+  placeholder="Processo nº."
+  [(ngModel)]="pensamento.processoprotocolo"
+/>
+
+<label for="vara">Vara Serventia</label>
+<input
+  type="text"
+  class="input"
+  id="vara"
+  name="vara"
+  placeholder="Vara Serventia"
+  [(ngModel)]="pensamento.varaserventia"
+/>
+
+<label for="cliente">Cliente</label>
+<input
+  type="text"
+  class="input"
+  id="cliente"
+  name="cliente"
+  placeholder="Cliente"
+  [(ngModel)]="pensamento.nomeDaEmpresa"
+/>
+
+<label for="polo">Polo</label>
+<input
+  type="text"
+  class="input"
+  id="polo"
+  name="polo"
+  placeholder="Polo"
+  [(ngModel)]="pensamento.polo"
+/>
+
+<label for="distribuicao">Data da Distribuição</label>
+<input
+  type="text"
+  class="input"
+  id="distribuicao"
+  name="distribuicao"
+  placeholder="Data da Distribuição"
+  [(ngModel)]="pensamento.datadadistribuicao"
+/>
+
+<label for="acao">Ação</label>
+<input
+  type="text"
+  class="input"
+  id="acao"
+  name="acao"
+  placeholder="Ação"
+  [(ngModel)]="pensamento.acao"
+/>
+
+<label for="partecontraria">Parte Contrária</label>
+<input
+  type="text"
+  class="input"
+  id="partecontraria"
+  name="partecontraria"
+  placeholder="Parte Contrária"
+  [(ngModel)]="pensamento.partecontraria"
+/>
+
+<label for="empreendimento">Empreendimento</label>
+<input
+  type="text"
+  class="input"
+  id="empreendimento"
+  name="empreendimento"
+  placeholder="Empreendimento"
+  [(ngModel)]="pensamento.empreendimento"
+/>
+
+<label for="custas">Custas Judiciais</label>
+<input
+  type="text"
+  class="input"
+  id="custas"
+  name="custas"
+  placeholder="Custas Judiciais"
+  [(ngModel)]="pensamento.custasjudiciais"
+/>
+
+<label for="valordacausa">Valor da Causa</label>
+<input
+  type="text"
+  class="input"
+  id="valordacausa"
+  name="valordacausa"
+  placeholder="Valor da Causa"
+  [(ngModel)]="pensamento.valordacausa"
+/>
+
+<label for="prazofinal">Prazo Final</label>
+<input
+  type="text"
+  class="input"
+  id="prazofinal"
+  name="prazofinal"
+  placeholder="Prazo Final"
+  [(ngModel)]="pensamento.prazofinal"
+/>
+
+<label for="andamento">Diligência</label>
+<input
+  type="text"
+  class="input"
+  id="andamento"
+  name="andamento"
+  placeholder="Diligência"
+  [(ngModel)]="pensamento.andamento"
+/>
+
+<label for="audiencia">Audiência</label>
+<input
+  type="text"
+  class="input"
+  id="audiencia"
+  name="audiencia"
+  placeholder="Audiência"
+  [(ngModel)]="pensamento.audiencia"
+/>
+
+      <div class="acoes">
+        <button (click)="editarPensamento()" class="botao">Salvar</button>
+        <button (click)="cancelar()" class="botao">Cancelar</button>
+      </div>
+    </form>
+  </section>
+  
+  

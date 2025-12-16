@@ -1,0 +1,59 @@
+.cabecalho {
+  background: url(/assets/imagens/fundo-cabecalho.png);
+  background-size: cover;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 20px;
+  position: relative;
+  height: 200px; /* ajuste a altura conforme o layout desejado */
+}
+
+.logo {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.logo img {
+  width: 90%;
+  max-width: 150px;
+  margin-bottom: 0.5rem;
+}
+
+.titulo {
+  font-size: 2rem;
+  color: #6BD1FF;
+  margin: 0;
+}
+
+nav#menu {
+  position: absolute;
+  bottom: 10px;   /* distância do fundo */
+  right: 20px;    /* distância da lateral direita */
+}
+
+nav#menu ul {
+  display: flex;
+  gap: 10px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+nav#menu li {
+  background-color: #dddddd;
+  padding: 8px 16px;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+nav#menu li:hover {
+  background-color: #ccc;
+}
+
+nav#menu li a {
+  text-decoration: none;
+  color: #000;
+  font-weight: 500;
+}

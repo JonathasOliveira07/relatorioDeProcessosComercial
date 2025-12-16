@@ -1,0 +1,21 @@
+<section class="container">
+  <header class="header d-flex">
+    <h2 class="ff-inter">Meu Mural</h2>
+    <button routerLink="/adicionarPensamento" class="botao">Adicionar Processo</button>
+  </header>
+  <button (click)="ordenar()" class="ordenar">ORDENAR</button>
+  <div class="mural" *ngIf="listaPensamentos.length > 0, else semPensamentos">
+    <div *ngFor="let pensamento of listaPensamentos">
+      <table>
+            <app-impressao [pensamento]="pensamento"></app-impressao>
+      </table>
+    </div>
+  </div>
+</section>
+<ng-template #semPensamentos>
+  <div class="ff-inter sem-pensamentos">
+    <p>Ainda não há pensamentos cadastrados!</p>
+  </div>
+</ng-template> 
+
+

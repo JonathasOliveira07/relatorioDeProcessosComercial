@@ -1,0 +1,38 @@
+<!-- <div class="pensamento"> -->
+  <!-- <img src="/assets/imagens/{{ pensamento.modelo }}.png" alt="Aspas coloridas"> -->
+  <!-- <p class="conteudo">Processo nº. {{ pensamento.processoprotocolo }}</p>
+  <p class="conteudo">Cliente: {{ pensamento.nomeDaEmpresa }}</p>
+  <p class="conteudo">Parte contrária: {{ pensamento.partecontraria }}</p>
+  <p class="conteudo"> Prazo Final: {{ pensamento.prazofinal }}</p>
+  <p class="autoria"><b>Diligência: {{ pensamento.andamento }}</b></p>
+  <p class="audiencia"><b>Audiência: {{ pensamento.audiencia }}</b></p> -->
+
+  <tr>
+    <td>{{ pensamento.processoprotocolo }}</td>
+    <td>{{ pensamento.nomeDaEmpresa }}</td>
+    <td>{{ dataFormatada }}</td>
+    <td>{{ pensamento.andamento }}</td>
+    <td>{{ pensamento.audiencia }}</td>
+    <td>{{ diasRestantes }}</td>
+  </tr>
+
+  <div class="acoes">
+    <button class="botao-detalhar">
+      <img src="/assets/imagens/DetalharIcone.png"
+        width="35px"
+        height="35px"
+        routerLink="/pensamentos/detalharPensamento/{{pensamento.id}}" 
+        alt="Ícone de detalhar"   
+      >
+    </button>
+    <button class="botao-editar">
+      <img src="/assets/imagens/icone-editar.png" routerLink="/pensamentos/editarPensamento/{{pensamento.id}}" alt="Ícone de editar">
+    </button>
+    <button class="botaoLongo-editar">
+      <img src="/assets/imagens/icone-editar.png" routerLink="/pensamentos/editarLongo/Pensamento//{{pensamento.id}}" alt="Ícone de editar Longo">
+    </button>
+    <button class="botao-excluir" routerLink="/pensamentos/excluirPensamento/{{pensamento.id}}">
+      <img src="/assets/imagens/icone-excluir.png" alt="Ícone de excluir">
+    </button>
+  </div>
+<!-- </div> -->

@@ -1,0 +1,20 @@
+<div class="pensamento">
+  <!-- <img src="/assets/imagens/{{ pensamento.modelo }}.png" alt="Aspas coloridas"> -->
+  <p class="conteudo">Processo nº. {{ pensamento.processoprotocolo }}</p>
+  <p class="conteudo">Cliente: {{ pensamento.nomeDaEmpresa }}</p>
+  <p class="conteudo">Parte contrária: {{ pensamento.partecontraria }}</p>
+  <p class="conteudo"> Prazo Final: {{ pensamento.prazofinal }}</p>
+  <p class="autoria"><b>Diligência: {{ pensamento.andamento }}</b></p>
+  <p class="autoria"><b>Faltam: {{ diasRestantes }}</b></p>
+  <p class="audiencia"><b>Audiência: {{ pensamento.audiencia }}</b></p>
+
+  <!-- <p class="hoje"><b>Hoje: {{ stringData }}</b></p> -->
+  <!-- <div class="acoes">
+    <button class="botao-editar">
+      <img src="/assets/imagens/icone-editar.png" routerLink="/pensamentos/editarPensamento/{{pensamento.id}}" alt="Ícone de editar">
+    </button>
+    <button class="botao-excluir" routerLink="/pensamentos/excluirPensamento/{{pensamento.id}}">
+      <img src="/assets/imagens/icone-excluir.png" alt="Ícone de excluir">
+    </button>
+  </div> -->
+</div>

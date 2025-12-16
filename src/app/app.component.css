@@ -1,0 +1,8 @@
+main {
+  /* background: url(/assets/imagens/background-completo.png); */
+  background-color: #f5f5f0;
+
+
+  background-size: cover;
+  min-height: 60vh;
+}
