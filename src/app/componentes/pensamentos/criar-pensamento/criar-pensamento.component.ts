@@ -3,9 +3,10 @@ import { PensamentoService } from './../pensamento.service';
 import { Pensamento } from './../pensamento';
 
 @Component({
-  selector: 'app-criar-pensamento',
-  templateUrl: './criar-pensamento.component.html',
-  styleUrls: ['./criar-pensamento.component.css']
+    selector: 'app-criar-pensamento',
+    templateUrl: './criar-pensamento.component.html',
+    styleUrls: ['./criar-pensamento.component.css'],
+    standalone: false
 })
 export class CriarPensamentoComponent implements OnInit {
   listaPensamentos: Pensamento[] = [];

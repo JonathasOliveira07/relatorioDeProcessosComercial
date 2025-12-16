@@ -4,9 +4,10 @@ import { PensamentoService } from '../pensamento.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
-  selector: 'app-adicionar-pensamento',
-  templateUrl: './adicionar-pensamento.component.html',
-  styleUrls: ['./adicionar-pensamento.component.css']
+    selector: 'app-adicionar-pensamento',
+    templateUrl: './adicionar-pensamento.component.html',
+    styleUrls: ['./adicionar-pensamento.component.css'],
+    standalone: false
 })
 export class AdicionarPensamentoComponent implements OnInit {
 

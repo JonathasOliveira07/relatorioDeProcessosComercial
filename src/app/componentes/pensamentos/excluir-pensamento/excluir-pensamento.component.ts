@@ -4,9 +4,10 @@ import { Component, OnInit } from '@angular/core';
 import { Pensamento } from '../pensamento';
 
 @Component({
-  selector: 'app-excluir-pensamento',
-  templateUrl: './excluir-pensamento.component.html',
-  styleUrls: ['./excluir-pensamento.component.css']
+    selector: 'app-excluir-pensamento',
+    templateUrl: './excluir-pensamento.component.html',
+    styleUrls: ['./excluir-pensamento.component.css'],
+    standalone: false
 })
 export class ExcluirPensamentoComponent implements OnInit {
 

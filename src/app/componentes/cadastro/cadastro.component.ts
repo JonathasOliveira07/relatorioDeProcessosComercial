@@ -7,10 +7,10 @@ import { FormValidations } from './../../form-validations';
 import { MatFormFieldModule, MatInputModule } from '@angular/material';
 
 @Component({
-  selector: 'app-cadastro',
-  templateUrl: './cadastro.component.html',
-  styleUrls: ['./cadastro.component.css'],
-
+    selector: 'app-cadastro',
+    templateUrl: './cadastro.component.html',
+    styleUrls: ['./cadastro.component.css'],
+    standalone: false
 })
 export class CadastroComponent implements OnInit {
 

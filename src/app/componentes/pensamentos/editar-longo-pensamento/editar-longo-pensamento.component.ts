@@ -4,9 +4,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Pensamento } from '../pensamento';
 
 @Component({
-  selector: 'app-editar-longo-pensamento',
-  templateUrl: './editar-longo-pensamento.component.html',
-  styleUrls: ['./editar-longo-pensamento.component.css']
+    selector: 'app-editar-longo-pensamento',
+    templateUrl: './editar-longo-pensamento.component.html',
+    styleUrls: ['./editar-longo-pensamento.component.css'],
+    standalone: false
 })
 export class EditarLongoPensamentoComponent implements OnInit {
 

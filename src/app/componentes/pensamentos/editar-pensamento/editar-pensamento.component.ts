@@ -4,9 +4,10 @@ import { Pensamento } from './../pensamento';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-editar-pensamento',
-  templateUrl: './editar-pensamento.component.html',
-  styleUrls: ['./editar-pensamento.component.css']
+    selector: 'app-editar-pensamento',
+    templateUrl: './editar-pensamento.component.html',
+    styleUrls: ['./editar-pensamento.component.css'],
+    standalone: false
 })
 export class EditarPensamentoComponent implements OnInit {
 

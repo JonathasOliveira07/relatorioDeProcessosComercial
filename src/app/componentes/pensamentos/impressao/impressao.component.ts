@@ -2,9 +2,10 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Pensamento } from './../pensamento';
 
 @Component({
-  selector: 'app-impressao',
-  templateUrl: './impressao.component.html',
-  styleUrls: ['./impressao.component.css']
+    selector: 'app-impressao',
+    templateUrl: './impressao.component.html',
+    styleUrls: ['./impressao.component.css'],
+    standalone: false
 })
 export class ImpressaoComponent implements OnInit {
 

@@ -4,9 +4,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Pensamento } from '../pensamento';
 
 @Component({
-  selector: 'app-detalhar-pensamento',
-  templateUrl: './detalhar-pensamento.component.html',
-  styleUrls: ['./detalhar-pensamento.component.css']
+    selector: 'app-detalhar-pensamento',
+    templateUrl: './detalhar-pensamento.component.html',
+    styleUrls: ['./detalhar-pensamento.component.css'],
+    standalone: false
 })
 export class DetalharPensamentoComponent implements OnInit {
 
