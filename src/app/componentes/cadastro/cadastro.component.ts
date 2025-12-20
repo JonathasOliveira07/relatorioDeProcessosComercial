@@ -1,16 +1,22 @@
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, ReactiveFormsModule, ValidationErrors, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { User } from './cadastro';
 import { CadastroService } from './cadastro.service';
-import { FormValidations } from './../../form-validations';
-import { MatFormFieldModule, MatInputModule } from '@angular/material';
+import { CommonModule } from '@angular/common';
+
+
 
 @Component({
     selector: 'app-cadastro',
-    templateUrl: './cadastro.component.html',
     styleUrls: ['./cadastro.component.css'],
-    standalone: false
+    standalone: true,
+    imports: [
+      ReactiveFormsModule,
+      CommonModule,
+
+    ],
+  templateUrl: './cadastro.component.html'
 })
 export class CadastroComponent implements OnInit {
 
@@ -27,25 +33,14 @@ export class CadastroComponent implements OnInit {
   confPassword: ''
   }
 
+
+
   constructor(
     private service: CadastroService,
     private fb: FormBuilder,
     private router: Router,
     private route: ActivatedRoute
   ) {
-    this.form = this.fb.group({
-      name: ['', [Validators.required, Validators.minLength(3)]],
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]],
-      confirmPassword: ['', Validators.required],
-    });
-  }
-  ngOnInit(): void {
-    const id = this.route.snapshot.paramMap.get('id')
-    if (id) { // Adicione esta verificação
-      this.service.buscarPorId(parseInt(id)).subscribe((user) => {this.user = user
-      })
-    }
 
     this.form = this.fb.group(
       {
@@ -54,10 +49,16 @@ export class CadastroComponent implements OnInit {
         password: ['', [Validators.required, Validators.minLength(6)]],
         confirmPassword: ['', Validators.required],
       },
-      {
-        validators: this.passwordMatchValidator
-      }
-    );
+      { validators: this.passwordMatchValidator }
+      );
+  }
+
+  ngOnInit(): void {
+    const id = this.route.snapshot.paramMap.get('id')
+    if (id) { // Adicione esta verificação
+      this.service.buscarPorId(parseInt(id)).subscribe((user) => {this.user = user
+      })
+    }
   }
 
 
@@ -109,13 +110,32 @@ export class CadastroComponent implements OnInit {
 
   calculatePasswordStrength(pwd: string): number {
     if (!pwd) return 0;
+
     let strength = 0;
-    if (pwd.length >= 6) strength++;
-    if (/[A-Z]/.test(pwd) && /[a-z]/.test(pwd)) strength++;
-    if (/[0-9]/.test(pwd)) strength++;
-    if (/[^A-Za-z0-9]/.test(pwd)) strength++;
-    return strength;
+
+    if (pwd.length >= 6) strength++;           // Fraca
+    if (pwd.length >= 8) strength++;           // Média
+    if (/[A-Z]/.test(pwd) && /[0-9]/.test(pwd)) strength++; // Forte
+    if (/[^A-Za-z0-9]/.test(pwd)) strength++;  // Muito Forte
+
+    return Math.min(strength, 4);
   }
+
+  strengthLabels = [
+    'Muito Fraca',
+    'Fraca',
+    'Média',
+    'Forte',
+    'Muito Forte'
+  ];
+
+  showPasswordInfo = false;
+
+  togglePasswordInfo() {
+    this.showPasswordInfo = !this.showPasswordInfo;
+  }
+
+
 
   cancelar() {
     this.router.navigate(['/cadastro'])
@@ -125,7 +145,6 @@ export class CadastroComponent implements OnInit {
     return this.calculatePasswordStrength(this.password);
   }
 
-  strengthLabels = ['Muito Fraca', 'Fraca', 'Média', 'Forte', 'Muito Forte'];
 
   // submit() {
   //   if (this.form.invalid) {

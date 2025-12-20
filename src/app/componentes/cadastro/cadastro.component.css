@@ -74,6 +74,13 @@
   transition: 0.3s;
 }
 
+.auth-card button.olhoMagico {
+  width: 10%;
+  padding: 0;
+  margin-top: -10px; /* ❌ gambiarra visual */
+
+}
+
 .auth-card button:hover {
   background: #63e885;
 }
@@ -135,3 +142,127 @@
 .bars span.active {
   background: #22c55e;
 }
+
+/* Container */
+.password-strength-container {
+  margin-top: 6px;
+}
+
+/* Barra */
+.password-strength-bar {
+  display: flex;
+  gap: 6px;
+}
+
+/* Segmentos */
+.password-strength-bar span {
+  flex: 1;
+  height: 4px;
+  background-color: #3a3a3a;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+/* ===== CORES PROGRESSIVAS (UMA COR POR ESTADO) ===== */
+
+/* Fraca */
+.strength-1 span:nth-child(-n+1) {
+  background-color: #e53935;
+}
+
+/* Média */
+.strength-2 span:nth-child(-n+2) {
+  background-color: #fbc02d;
+}
+
+/* Forte */
+.strength-3 span:nth-child(-n+3) {
+  background-color: #7cb342;
+}
+
+/* Muito Forte */
+.strength-4 span:nth-child(-n+4) {
+  background-color: #4caf50;
+}
+
+/* Texto */
+.strength-text {
+  display: block;
+  margin-top: 4px;
+  font-size: 12px;
+}
+
+/* Texto acompanha a força */
+.text-1 { color: #e53935; }
+.text-2 { color: #fbc02d; }
+.text-3 { color: #7cb342; }
+.text-4 { color: #4caf50; }
+
+
+.password-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* -- Início -- 🛈 Ícone de informação  */
+.info-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  font-size: 11px;
+  font-weight: bold;
+  color: #ffffff;
+  border-radius: 50%;
+  background-color: #2e7d32;
+  cursor: pointer;
+}
+
+/* Tooltip mobile */
+.password-tooltip.mobile {
+  margin: 8px;
+  background-color: rgb(30, 30, 30);
+  border: 1px solid #333;
+  padding: 10px;
+  border-radius: 6px;
+  font-size: 12px;
+  color: #ffffff;
+}
+
+/* Tabela */
+.password-tooltip table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.password-tooltip th,
+.password-tooltip td {
+  padding: 6px;
+  text-align: left;
+}
+
+.password-tooltip th {
+  border-bottom: 1px solid #444;
+  color: #ccc;
+}
+
+/* Cores */
+.fraca {
+  color: #e53935;
+}
+
+.media {
+  color: #fbc02d;
+}
+
+.forte {
+  color: #7cb342;
+}
+
+.muito-forte {
+  color: #4caf50;
+}
+
+/* -- Início -- 🛈 Ícone de informação */

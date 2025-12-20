@@ -4,18 +4,21 @@
     <button routerLink="/adicionarPensamento" class="botao">Adicionar Processo</button>
   </header>
   <button (click)="ordenar()" class="ordenar">ORDENAR</button>
-  <div class="mural" *ngIf="listaPensamentos.length > 0, else semPensamentos">
-    <div *ngFor="let pensamento of listaPensamentos">
-      <table>
+  @if (listaPensamentos.length > 0) {
+    <div class="mural">
+      @for (pensamento of listaPensamentos; track pensamento) {
+        <div>
+          <table>
             <app-impressao [pensamento]="pensamento"></app-impressao>
-      </table>
+          </table>
+        </div>
+      }
     </div>
-  </div>
+  } @else {
+    <div class="ff-inter sem-pensamentos">
+      <p>Ainda não há pensamentos cadastrados!</p>
+    </div>
+  }
 </section>
-<ng-template #semPensamentos>
-  <div class="ff-inter sem-pensamentos">
-    <p>Ainda não há pensamentos cadastrados!</p>
-  </div>
-</ng-template> 
 
 

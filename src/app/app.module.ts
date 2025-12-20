@@ -15,9 +15,9 @@ import { ImpressaoComponent } from './componentes/pensamentos/impressao/impressa
 import { DetalharPensamentoComponent } from './componentes/pensamentos/detalhar-pensamento/detalhar-pensamento.component';
 import { EditarLongoPensamentoComponent } from './componentes/pensamentos/editar-longo-pensamento/editar-longo-pensamento.component';
 import { AdicionarPensamentoComponent } from './componentes/pensamentos/adicionar-pensamento/adicionar-pensamento.component';
-import { CadastroComponent } from './componentes/cadastro/cadastro.component';
 import { LoginComponent } from './componentes/login/login.component';
 import { CommonModule } from '@angular/common';
+import { CabecalhoComponent } from './cabecalho/cabecalho.component';
 
 
 
@@ -34,6 +34,9 @@ import { CommonModule } from '@angular/common';
         EditarLongoPensamentoComponent,
         AdicionarPensamentoComponent,
         LoginComponent,
+        AppComponent,
+        CabecalhoComponent
+
     ],
     bootstrap: [AppComponent], imports: [BrowserModule,
         AppRoutingModule,

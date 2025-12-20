@@ -9,59 +9,106 @@
       <!-- Nome -->
       <label>Nome</label>
       <input type="text" formControlName="name" placeholder="Seu nome completo" ngConsoleLog="user.nome"/>
-      <p class="erro" *ngIf="form.get('name')?.touched && form.get('name')?.invalid">
-        Nome obrigatório (mín. 3 caracteres)
-      </p>
 
       <!-- Email -->
       <label>Email</label>
       <input type="email" formControlName="email" placeholder="seu@email.com" ngConsoleLog="user.email"/>
-      <p class="erro" *ngIf="form.get('email')?.touched && form.get('email')?.invalid">
-        Email inválido
-      </p>
 
       <!-- Senha -->
-      <label>Senha</label>
+      <!-- Senha -->
+        <div class="password-header">
+          <label class="password-label">
+            Senha
+            <span class="info-icon" (click)="togglePasswordInfo()">i</span>
+          </label>
+
+          @if (showPasswordInfo) {
+            <div class="password-tooltip mobile">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Senha</th>
+                    <th>Classificação</th>
+                    <th>Motivo</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>123456</td>
+                    <td class="fraca">Fraca</td>
+                    <td>6 caracteres</td>
+                  </tr>
+                  <tr>
+                    <td>12345678</td>
+                    <td class="media">Média</td>
+                    <td>8 caracteres</td>
+                  </tr>
+                  <tr>
+                    <td>Senha123</td>
+                    <td class="forte">Forte</td>
+                    <td>Maiúscula + número</td>
+                  </tr>
+                  <tr>
+                    <td>Senha@123</td>
+                    <td class="muito-forte">Muito Forte</td>
+                    <td>Maiúscula + número + caractere especial</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          }
+        </div>
+      <!-- Fim -- 🛈 ícone de informação -->
+
       <div class="input-password">
         <input
           [type]="showPassword ? 'text' : 'password'" formControlName="password"
           placeholder="••••••••"
           ngConsoleLog="user.password"
-        />
-        <button type="showPassword  ? 'text' : 'confirPassword'" (click)="togglePassword()">👁️</button>
+          />
+        <button type="button" class="olhoMagico" (click)="togglePassword()">👁️</button>
       </div>
+      @if (form.get('password')?.value) {
+        <div class="password-strength-container">
+          <div
+            class="password-strength-bar"
+            [ngClass]="'strength-' + passwordStrength"
+          >
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
 
-      <!-- Força da senha -->
-      <div class="strength" *ngIf="password">
-        <div class="bars">
-          <span *ngFor="let bar of [0,1,2,3]; let i = index"
-                [class.active]="i < passwordStrength"></span>
+          <span
+            class="strength-text"
+            [ngClass]="'text-' + passwordStrength"
+          >
+            {{ strengthLabels[passwordStrength] }}
+          </span>
         </div>
-        <small>{{ strengthLabels[passwordStrength] }}</small>
-      </div>
+      }
+
 
       <!-- Confirmar senha -->
       <label>Confirmar senha</label>
       <div class="input-password">
-        <mat-form-field><input
+        <input
           [type]="showConfirmPassword ? 'text' : 'password'"
           formControlName="confirmPassword"
           placeholder="••••••••"
-        />
-        <mat-error *ngIf="form.get('confirmPassword')?.hasError('required')">
-          Confirmação de senha é obrigatória
-        </mat-error>
+          />
+          @if (
+            form.hasError('mismatch') &&
+            form.get('password')?.touched &&
+            form.get('confirmPassword')?.touched
+          ) {
+            <p class="error">As senhas não conferem</p>
+          }
 
-        <mat-error *ngIf="form.hasError('mismatch') && form.get('confirmPassword')?.touched">
-          As senhas não coincidem
-        </mat-error></mat-form-field>
 
-        <button type="button" (click)="toggleConfirmPassword()">👁️</button>
+        <button type="button" class="olhoMagico" (click)="toggleConfirmPassword()">👁️</button>
       </div>
-
-      <p class="erro" *ngIf="form.get('confirmPassword')?.errors?.['mismatch']">
-        As senhas não coincidem
-      </p>
 
       <!-- Botão -->
 

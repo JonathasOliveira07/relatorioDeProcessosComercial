@@ -7,7 +7,7 @@
   <button (click)="ordenarPorPrazoFinalDesc()" class="ordenar">ORDENAR</button>
   <!-- <button (click)="renderDataHoje()" class="datadehoje">Data de Hoje</button> -->
 
-  <ng-container *ngIf="listaPensamentos.length > 0; else semPensamentos">
+  @if (listaPensamentos.length > 0) {
     <table>
       <thead>
         <tr>
@@ -21,51 +21,52 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let pensamento of listaPensamentos">
-          <td>{{ pensamento.processoprotocolo }}</td>
-          <td>{{ pensamento.nomeDaEmpresa }}</td>
-          <td>{{ pensamento.prazofinal }}</td>
-          <td>{{ pensamento.andamento }}</td>
-          <td>{{ pensamento.audiencia }}</td>
-          <td>
+        @for (pensamento of listaPensamentos; track pensamento) {
+          <tr>
+            <td>{{ pensamento.processoprotocolo }}</td>
+            <td>{{ pensamento.nomeDaEmpresa }}</td>
+            <td>{{ pensamento.prazofinal }}</td>
+            <td>{{ pensamento.andamento }}</td>
+            <td>{{ pensamento.audiencia }}</td>
+            <td>
             <span [ngClass]="{
               'falta-mais-de-3': pensamento.falta > 3,
               'falta-ate-3': pensamento.falta <= 3 && pensamento.falta >= 0
             }" class="falta-indicador">
-              {{ pensamento.falta }}
-            </span>
-          </td>
-          <td>
-            <div class="icon-container">
-              <button class="botao-icone">
-                <img src="/assets/imagens/editarLongo.png"
-                  routerLink="/pensamentos/editarLongo/Pensamento//{{pensamento.id}}"
-                  alt="Ícone de editar Longo">
-              </button>
-              <button class="botao-icone">
-                <img src="/assets/imagens/DetalharIcone.png"
-                  routerLink="/pensamentos/detalharPensamento/{{pensamento.id}}"
-                  alt="Ícone de detalhar">
-              </button>
-              <button class="botao-icone">
-                <img src="/assets/imagens/icone-editar.png"
-                  routerLink="/pensamentos/editarPensamento/{{pensamento.id}}"
-                  alt="Ícone de editar">
-              </button>
-              <button class="botao-icone"
-                routerLink="/pensamentos/excluirPensamento/{{pensamento.id}}">
-                <img src="/assets/imagens/icone-excluir.png" alt="Ícone de excluir">
-              </button>
-            </div>
-          </td>
-        </tr>
+                {{ pensamento.falta }}
+              </span>
+            </td>
+            <td>
+              <div class="icon-container">
+                <button class="botao-icone">
+                  <img src="/assets/imagens/editarLongo.png"
+                    routerLink="/pensamentos/editarLongo/Pensamento//{{pensamento.id}}"
+                    alt="Ícone de editar Longo">
+                </button>
+                <button class="botao-icone">
+                  <img src="/assets/imagens/DetalharIcone.png"
+                    routerLink="/pensamentos/detalharPensamento/{{pensamento.id}}"
+                    alt="Ícone de detalhar">
+                </button>
+                <button class="botao-icone">
+                  <img src="/assets/imagens/icone-editar.png"
+                    routerLink="/pensamentos/editarPensamento/{{pensamento.id}}"
+                    alt="Ícone de editar">
+                </button>
+                <button class="botao-icone"
+                  routerLink="/pensamentos/excluirPensamento/{{pensamento.id}}">
+                  <img src="/assets/imagens/icone-excluir.png" alt="Ícone de excluir">
+                </button>
+              </div>
+            </td>
+          </tr>
+        }
       </tbody>
     </table>
-  </ng-container>
-
-  <ng-template #semPensamentos>
+  } @else {
     <div class="ff-inter sem-pensamentos">
       <p>Ainda não há pensamentos cadastrados!</p>
     </div>
-  </ng-template>
+  }
+
 </section>
