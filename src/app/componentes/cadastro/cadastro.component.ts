@@ -1,172 +1,82 @@
-import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup, ReactiveFormsModule, ValidationErrors, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
-import { User } from './cadastro';
-import { CadastroService } from './cadastro.service';
-import { CommonModule } from '@angular/common';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+import { Router } from '@angular/router';
+import { CadastroService } from 'src/app/core/services/cadastro.service';
+import { FormularioService } from 'src/app/core/services/formulario.service';
+import { PessoaUsuaria } from 'src/app/core/types/type';
+import { FormValidations } from '../../form-validations';
 
 
 
 @Component({
-    selector: 'app-cadastro',
-    styleUrls: ['./cadastro.component.css'],
-    standalone: true,
-    imports: [
-      ReactiveFormsModule,
-      CommonModule,
-
-    ],
-  templateUrl: './cadastro.component.html'
+  selector: 'app-cadastro',
+  templateUrl: './cadastro.component.html',
+  styleUrls: ['./cadastro.component.css'],
+  standalone: false
 })
 export class CadastroComponent implements OnInit {
 
-  form: FormGroup;
-  showPassword = true;
-  showConfirmPassword = true;
-  isLoading = false;
+  cadastroForm!: FormGroup;
 
-  user: User = {
-  id: 0,
-  nome: '',
-  email: '',
-  password: '',
-  confPassword: ''
-  }
-
+  @Input() perfilComponent: boolean = false;
+  @Input() titulo: string = 'Crie sua conta';
+  @Input() textoBotao: string = 'CADASTRAR';
+  @Output() acaoClique: EventEmitter<any> = new EventEmitter<any>()
+  @Output() sair: EventEmitter<any> = new EventEmitter<any>()
 
 
   constructor(
-    private service: CadastroService,
-    private fb: FormBuilder,
-    private router: Router,
-    private route: ActivatedRoute
-  ) {
+    private formularioService: FormularioService,
+    private cadastroService: CadastroService,
+    private formBuilder: FormBuilder,
+    private router: Router
+  ) {}
 
-    this.form = this.fb.group(
-      {
-        name: ['', [Validators.required, Validators.minLength(3)]],
-        email: ['', [Validators.required, Validators.email]],
-        password: ['', [Validators.required, Validators.minLength(6)]],
-        confirmPassword: ['', Validators.required],
-      },
-      { validators: this.passwordMatchValidator }
-      );
+  ngOnInit() {
+    this.cadastroForm = this.formBuilder.group({
+      nome: [null, Validators.required],
+      email: [null, [Validators.required, Validators.email]],
+      senha: [null, [Validators.required, Validators.minLength(3)]],
+      confirmarEmail: [null, [Validators.required, Validators.email, FormValidations.equalTo('email')]],
+      confirmarSenha: [null, [Validators.required, Validators.minLength(3), FormValidations.equalTo('senha')]],
+      aceitarTermos: [false, [Validators.requiredTrue]]
+    });
+
+    if(this.perfilComponent){
+      this.cadastroForm.get('aceitarTermos')?.setValidators(null)
+    } else {
+      this.cadastroForm.get('aceitarTermos')?.setValidators([Validators.requiredTrue])
+    }
+
+    this.cadastroForm.get('aceitarTermos')?.updateValueAndValidity();
+
+    this.formularioService.setCadastro(this.cadastroForm)
   }
 
-  ngOnInit(): void {
-    const id = this.route.snapshot.paramMap.get('id')
-    if (id) { // Adicione esta verificação
-      this.service.buscarPorId(parseInt(id)).subscribe((user) => {this.user = user
-      })
+  executarAcao() {
+    this.acaoClique.emit();
+  }
+
+  deslogar() {
+    this.sair.emit();
+  }
+
+
+  cadastrar() {
+    const formCadastro = this.formularioService.getCadastro();
+
+    if (formCadastro?.valid) {
+      const novoCadastro = formCadastro.getRawValue() as PessoaUsuaria;
+      console.log(novoCadastro)
+      this.cadastroService.cadastrar(novoCadastro).subscribe({
+        next: (value) => {
+          console.log('Cadastro realizado com sucesso', value);
+          this.router.navigate(['/login']);
+        },
+        error: (err) => {
+          console.log('Erro ao realizar cadastro', err)
+        }
+      });
     }
   }
-
-
-  get password(): string {
-    return this.form.get('password')?.value || '';
-  }
-
-  togglePassword() {
-    this.showPassword = !this.showPassword;
-  }
-
-  toggleConfirmPassword() {
-    this.showConfirmPassword = !this.showConfirmPassword;
-  }
-
-  passwordMatchValidator(control: AbstractControl): ValidationErrors | null {
-    const password = control.get('password')?.value;
-    const confirm = control.get('confirmPassword')?.value;
-
-    if (!password || !confirm) return null;
-
-    return password === confirm ? null : { mismatch: true };
-  }
-
-  criarUser() {
-  if (this.form.invalid) {
-    this.form.markAllAsTouched();
-    return;
-  }
-
-  const user: User = {
-    id: 0,
-    nome: this.form.value.name,
-    email: this.form.value.email,
-    password: this.form.value.password,
-    confPassword: this.form.value.password,
-  };
-
-  this.service.cadastrarUser(user).subscribe({
-    next: () => {
-      console.log('Usuário cadastrado com sucesso');
-      this.router.navigate(['/login']);
-    },
-    error: err => console.error(err)
-    });
-  }
-
-
-
-  calculatePasswordStrength(pwd: string): number {
-    if (!pwd) return 0;
-
-    let strength = 0;
-
-    if (pwd.length >= 6) strength++;           // Fraca
-    if (pwd.length >= 8) strength++;           // Média
-    if (/[A-Z]/.test(pwd) && /[0-9]/.test(pwd)) strength++; // Forte
-    if (/[^A-Za-z0-9]/.test(pwd)) strength++;  // Muito Forte
-
-    return Math.min(strength, 4);
-  }
-
-  strengthLabels = [
-    'Muito Fraca',
-    'Fraca',
-    'Média',
-    'Forte',
-    'Muito Forte'
-  ];
-
-  showPasswordInfo = false;
-
-  togglePasswordInfo() {
-    this.showPasswordInfo = !this.showPasswordInfo;
-  }
-
-
-
-  cancelar() {
-    this.router.navigate(['/cadastro'])
-  }
-
-  get passwordStrength(): number {
-    return this.calculatePasswordStrength(this.password);
-  }
-
-
-  // submit() {
-  //   if (this.form.invalid) {
-  //     this.form.markAllAsTouched();
-  //     return;
-  //   }
-
-  //   if (this.form.value.password !== this.form.value.confirmPassword) {
-  //     this.form.get('confirmPassword')?.setErrors({ mismatch: true });
-  //     return;
-  //   }
-
-  //   this.isLoading = true;
-
-
-
-  //   // 🔹 Aqui você chama seu AuthService
-  //   setTimeout(() => {
-  //     this.isLoading = false;
-
-  //     console.log('Usuário cadastrado com sucesso:', this.form.value);
-  //     this.router.navigate(['/login']);
-  //   }, 1500);
-  // }
 }

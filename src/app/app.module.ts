@@ -1,4 +1,4 @@
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { HttpClientModule, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -18,6 +18,23 @@ import { AdicionarPensamentoComponent } from './componentes/pensamentos/adiciona
 import { LoginComponent } from './componentes/login/login.component';
 import { CommonModule } from '@angular/common';
 import { CabecalhoComponent } from './cabecalho/cabecalho.component';
+import { CadastroComponent } from './componentes/cadastro/cadastro.component';
+
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatIconModule } from '@angular/material/icon';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 
 
@@ -35,13 +52,40 @@ import { CabecalhoComponent } from './cabecalho/cabecalho.component';
         AdicionarPensamentoComponent,
         LoginComponent,
         AppComponent,
-        CabecalhoComponent
+        CabecalhoComponent,
+        CadastroComponent,
 
     ],
-    bootstrap: [AppComponent], imports: [BrowserModule,
+    bootstrap: [AppComponent], 
+    
+    imports: [
+        BrowserModule,
         AppRoutingModule,
         FormsModule,
         ReactiveFormsModule,
         CommonModule,
-        ReactiveFormsModule], providers: [provideHttpClient(withInterceptorsFromDi())] })
+        MatCardModule,
+        ReactiveFormsModule,
+        MatToolbarModule,
+        MatButtonModule,
+        MatCardModule,
+        MatButtonToggleModule,
+        MatIconModule,
+        MatChipsModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatDatepickerModule,
+        MatNativeDateModule,
+        MatDialogModule,
+        HttpClientModule,
+        ReactiveFormsModule,
+        MatAutocompleteModule,
+        MatRadioModule,
+        MatDividerModule,
+        MatCheckboxModule
+    ], 
+    
+    providers: [provideHttpClient(withInterceptorsFromDi())] })
+
+
 export class AppModule { }

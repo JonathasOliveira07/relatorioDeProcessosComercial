@@ -5,11 +5,6 @@ export interface Promocao {
     preco: number
 }
 
-export interface UnidadeFederativa {
-    id: number;
-    nome: string;
-    sigla: string;
-}
 
 export interface Depoimento {
     id: number;
@@ -20,12 +15,6 @@ export interface Depoimento {
 
 export interface PessoaUsuaria {
   nome: string;
-  nascimento: string;
-  cpf: string;
-  telefone: string;
   email: string;
   senha: string;
-  cidade: string;
-  estado: UnidadeFederativa;
-  genero: string;
 }

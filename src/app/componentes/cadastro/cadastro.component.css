@@ -9,260 +9,48 @@
 
 /* Card */
 .auth-card {
-  background: rgb(24,78,141);
-  border-radius: 16px;
-  padding: 32px;
+  background: linear-gradient(220deg, #ffffff 0%, #123a6a 100%);
+  border-radius: 20px;
+  padding: 32px 28px;
   width: 100%;
-  max-width: 380px;
+  max-width: 480px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
 }
 
 
-/* Título */
-.auth-card h2 {
-  color: #7CFF9E;
-  text-align: center;
-  margin-bottom: 6px;
+mat-form-field {
+  margin-bottom: 26px;
 }
 
-/* Subtítulo */
-.subtitulo {
-  text-align: center;
-  color: #9e9e9e;
-  font-size: 14px;
-  margin-bottom: 24px;
+
+/* 🔹 8️⃣ Texto do botão mais legível */
+button[mat-flat-button] {
+  color: #ffffff;
+  font-weight: 600;
+  background-color: #184f8dcc;
 }
 
-/* Labels */
-.auth-card label {
-  display: block;
-  margin-bottom: 6px;
-  color: #bdbdbd;
-  font-size: 14px;
+
+
+/* 5️⃣ GRID MAIS HARMÔNICO */
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
 }
 
-/* Inputs */
-.auth-card input {
-  width: 100%;
-  padding: 12px;
-  border-radius: 8px;
-  border: 1px solid #2a2a2a;
-  background-color: #ffffff;
-  color: #000000;
-  margin-bottom: 18px;
-  outline: none;
-}
-
-.auth-card input::placeholder {
-  color: #6f6f6f;
-}
-
-.auth-card input:focus {
-  border-color: #7CFF9E;
-}
 
 /* Botão */
-.auth-card button {
-  width: 100%;
-  padding: 14px;
-  border: none;
-  border-radius: 10px;
-  background: #7CFF9E;
-  color: #000;
-  font-weight: 600;
-  font-size: 16px;
-  cursor: pointer;
-  transition: 0.3s;
-}
 
-.auth-card button.olhoMagico {
-  width: 10%;
-  padding: 0;
-  margin-top: -10px; /* ❌ gambiarra visual */
-
-}
-
-.auth-card button:hover {
-  background: #63e885;
-}
-
-/* Rodapé */
-.rodape {
-  margin-top: 18px;
+mat-card-title {
+  color: #1b5699;
   text-align: center;
-  font-size: 14px;
-  color: #bdbdbd;
-}
-
-.rodape a {
-  color: #7CFF9E;
-  text-decoration: none;
+  font-size: 28px;
   font-weight: 500;
+  margin-bottom: 32px;
 }
 
-/* caracteristicas da senha forte e fraca: */
-.input-password {
-  position: relative;
-}
 
-.input-password button {
-  position: absolute;
-  right: 10px;
-  top: 50%;
-  transform: translateY(-50%);
-  background: none;
-  border: none;
-  color: #000000;
-  cursor: pointer;
-}
-
-.erro {
-  font-size: 12px;
-  color: #ef4444;
-  margin-top: -12px;
-  margin-bottom: 12px;
-}
-
-.strength {
-  margin-bottom: 16px;
-}
-
-.bars {
-  display: flex;
-  gap: 4px;
-  margin-bottom: 4px;
-}
-
-.bars span {
-  flex: 1;
-  height: 4px;
-  border-radius: 4px;
-  background: #334155;
-}
-
-.bars span.active {
-  background: #22c55e;
-}
-
-/* Container */
-.password-strength-container {
-  margin-top: 6px;
-}
-
-/* Barra */
-.password-strength-bar {
-  display: flex;
-  gap: 6px;
-}
-
-/* Segmentos */
-.password-strength-bar span {
-  flex: 1;
-  height: 4px;
-  background-color: #3a3a3a;
-  border-radius: 4px;
-  transition: background-color 0.3s ease;
-}
-
-/* ===== CORES PROGRESSIVAS (UMA COR POR ESTADO) ===== */
-
-/* Fraca */
-.strength-1 span:nth-child(-n+1) {
-  background-color: #e53935;
-}
-
-/* Média */
-.strength-2 span:nth-child(-n+2) {
-  background-color: #fbc02d;
-}
-
-/* Forte */
-.strength-3 span:nth-child(-n+3) {
-  background-color: #7cb342;
-}
-
-/* Muito Forte */
-.strength-4 span:nth-child(-n+4) {
-  background-color: #4caf50;
-}
-
-/* Texto */
-.strength-text {
-  display: block;
-  margin-top: 4px;
-  font-size: 12px;
-}
-
-/* Texto acompanha a força */
-.text-1 { color: #e53935; }
-.text-2 { color: #fbc02d; }
-.text-3 { color: #7cb342; }
-.text-4 { color: #4caf50; }
-
-
-.password-label {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
-/* -- Início -- 🛈 Ícone de informação  */
-.info-icon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 16px;
-  height: 16px;
-  font-size: 11px;
-  font-weight: bold;
-  color: #ffffff;
-  border-radius: 50%;
-  background-color: #2e7d32;
-  cursor: pointer;
-}
-
-/* Tooltip mobile */
-.password-tooltip.mobile {
-  margin: 8px;
-  background-color: rgb(30, 30, 30);
-  border: 1px solid #333;
-  padding: 10px;
-  border-radius: 6px;
-  font-size: 12px;
+p.termosTemQueAceitar {
   color: #ffffff;
 }
-
-/* Tabela */
-.password-tooltip table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-.password-tooltip th,
-.password-tooltip td {
-  padding: 6px;
-  text-align: left;
-}
-
-.password-tooltip th {
-  border-bottom: 1px solid #444;
-  color: #ccc;
-}
-
-/* Cores */
-.fraca {
-  color: #e53935;
-}
-
-.media {
-  color: #fbc02d;
-}
-
-.forte {
-  color: #7cb342;
-}
-
-.muito-forte {
-  color: #4caf50;
-}
-
-/* -- Início -- 🛈 Ícone de informação */
